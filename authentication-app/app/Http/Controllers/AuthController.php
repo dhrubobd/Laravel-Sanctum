@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
+use Laravel\Sanctum\PersonalAccessToken;
 class AuthController extends Controller
 {
     public function registerUser(Request $request){
@@ -47,12 +48,18 @@ class AuthController extends Controller
         }
         $user = User::where('email',$request->email)->firstorfail();
         $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
             'success'=>true,
             'token'=>$token,
             'message'=>"Login Success"
         ],201);
+    }
+
+    public function getUserInfo(Request $request){
+        $user=auth('sanctum')->user();
+        return response()->json([
+            'user'=>$user
+        ]);
     }
     
     public function logoutUser(Request $request){
