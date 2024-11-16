@@ -7,60 +7,78 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Laravel Sanctum
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel Sanctum is a lightweight authentication package for the Laravel framework that provides an easy way to handle authentication for APIs and single-page applications (SPAs). It allows developers to issue API tokens to users and manage them effectively. Here's a detailed breakdown:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features of Laravel Sanctum
 
-## Learning Laravel
+### API Token Authentication
+- Sanctum enables applications to issue tokens for user accounts.
+- These tokens can be used to authenticate API requests.
+- Tokens can be granted specific abilities or scopes, limiting what the token can be used for.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Session-Based Authentication for SPAs
+- Sanctum supports session-based authentication for SPAs that communicate with the backend using standard web authentication (cookies).
+- It leverages Laravel's built-in authentication system, allowing SPAs to authenticate users via login forms and maintain sessions.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Token Abilities/Scopes
+- Tokens can have specific abilities (permissions) assigned to them, restricting what actions the token can perform.
+- Example: You can create a token that only performs "view" operations but not "delete."
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Minimal Overhead
+- Compared to other authentication packages like Passport, Sanctum is less complex and doesn't require OAuth for token issuance.
 
-## Laravel Sponsors
+### CSRF Protection for SPAs
+- Sanctum ensures proper handling of Cross-Site Request Forgery (CSRF) tokens when used for session-based authentication in SPAs.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Common Use Cases
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **API Authentication**: Protect routes and resources in an API by requiring tokens for access.
+- **Single-Page Applications (SPAs)**: Authenticate and maintain sessions for SPAs using cookies.
+- **Mobile App Backends**: Issue API tokens for mobile apps to authenticate users.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## How Sanctum Works
 
-## Code of Conduct
+## Installation and Setup
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Sanctum is installed as a Laravel package via Composer.
+- After installation, you need to configure it and publish its migration files to set up the necessary database tables for token storage.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Token Issuance
 
-## License
+- Tokens can be issued to users using methods like `createToken` on the user model.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Protecting Routes
+
+- Sanctum provides middleware to protect routes, ensuring only authenticated users or valid tokens can access them.
+
+---
+
+## SPAs and Cookies
+
+- Sanctum integrates with Laravel's standard session-based authentication system, allowing SPAs to authenticate users via login endpoints.
+
+---
+
+## Benefits
+
+- Simple and intuitive setup for token-based and session-based authentication.
+- Reduces the complexity of OAuth for simpler use cases.
+- Fully compatible with Laravel's authentication ecosystem.
+
+---
+
+## Postman Testing
+
+- **[Video Link](https://www.youtube.com/watch?v=3h1dRLKijTI)**
